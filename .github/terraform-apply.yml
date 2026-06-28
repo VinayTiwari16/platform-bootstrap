@@ -1,0 +1,30 @@
+name: Terraform Apply
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.GITHUB_SA }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Terraform Init
+
+        run: |
+          terraform init -backend-config=backend/dev.hcl
+
+      - name: Terraform Apply
+        run: |
+          terraform apply auto-approve -var-file=environments/dev/terraform.tfvars
