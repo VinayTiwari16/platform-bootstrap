@@ -43,6 +43,12 @@ module "workload_identity_binding" {
   repository_name             = var.repository_name
 }
 
+resource "google_storage_bucket_iam_member" "terraform_state_access" {
+  bucket = var.bucket_name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${module.github_service_account.email}"
+}
+
 output "project_id" {
   value = var.project_id
 }
