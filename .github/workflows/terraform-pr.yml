@@ -25,6 +25,14 @@ jobs:
         with:
           terraform_version: 1.12.2
 
+      - name: Check WIF secrets
+        run: |
+          if [ -z "${{ secrets.WIF_PROVIDER }}" ] || [ -z "${{ secrets.GITHUB_SA }}" ]; then
+            echo "Missing GitHub secrets: WIF_PROVIDER and/or GITHUB_SA"
+            echo "Please add both repository secrets before rerunning the workflow."
+            exit 1
+          fi
+
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
         with:
