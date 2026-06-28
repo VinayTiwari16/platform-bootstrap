@@ -23,17 +23,25 @@ variable "repository_name" {
   type        = string
 }
 variable "github_service_account_name" {
-  default = "platform-bootstrap-ci"
+  description = "Name of the GitHub Actions service account"
+  type        = string
+  default     = "platform-bootstrap-ci"
 }
+
 variable "github_service_account_display_name" {
-  default = "GitHub Actions CI/CD"
+  description = "Display name for the GitHub Actions service account"
+  type        = string
+  default     = "GitHub Actions CI/CD"
 }
+
 variable "workload_identity_pool_id" {
-  default = "github-pool"
+  description = "Workload Identity Pool ID"
+  type        = string
+  default     = "github-pool"
 }
+
 variable "workload_identity_provider_id" {
-  default = "github-provider"
-}
-output "project_number" {
-  value = data.google_project.bootstrap.number
+  description = "Workload Identity Provider ID"
+  type        = string
+  default     = "github-provider"
 }

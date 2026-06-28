@@ -27,8 +27,8 @@ jobs:
 
       - name: Check WIF secrets
         run: |
-          if [ -z "${{ secrets.WIF_PROVIDER }}" ] || [ -z "${{ secrets.GITHUB_SA }}" ]; then
-            echo "Missing GitHub secrets: WIF_PROVIDER and/or GITHUB_SA"
+          if [ -z "${{ secrets.GCP_WIF_PROVIDER }}" ] || [ -z "${{ secrets.GCP_SERVICE_ACCOUNT }}" ]; then
+            echo "Missing GitHub secrets: GCP_WIF_PROVIDER and/or GCP_SERVICE_ACCOUNT"
             echo "Please add both repository secrets before rerunning the workflow."
             exit 1
           fi
@@ -36,8 +36,8 @@ jobs:
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
-          service_account: ${{ secrets.GITHUB_SA }}
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2

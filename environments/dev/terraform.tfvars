@@ -1,6 +1,6 @@
 project_id      = "pf-bootstrap"
 region          = "asia-south1"
 environment     = "dev"
-bucket_name     = "pf-bootstrap-tfstate-vinay"
+bucket_name     = "pf-bootstrap-tfstate-vt"
 github_owner    = "VinayTiwari16"
 repository_name = "platform-bootstrap"

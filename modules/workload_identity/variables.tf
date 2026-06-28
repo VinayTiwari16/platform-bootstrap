@@ -2,7 +2,13 @@ variable "project_id" {
   description = "Bootstrap Project ID"
   type        = string
 }
-variable "workload_identity_pool_name" {
+
+variable "project_number" {
+  description = "Project number for the workload identity resources"
+  type        = string
+}
+
+variable "pool_id" {
   description = "Workload Identity Pool ID"
   type        = string
 }
