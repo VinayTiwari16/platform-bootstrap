@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -21,7 +22,6 @@ jobs:
 
       - uses: google-github-actions/setup-gcloud@v2
       - name: Terraform Init
-
         run: |
           terraform init -backend-config=backend/dev.hcl
 
